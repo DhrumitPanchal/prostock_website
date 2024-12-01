@@ -1,101 +1,193 @@
 import Image from "next/image";
+import WhyChooseProStock from "./components/WyChooseProStock";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const customerReviews = [
+    {
+      name: "Rohit Sharma",
+      review:
+        "ProStock’s intuitive interface and real-time updates make trading simple and efficient. Perfect for both beginners and experts!",
+      image: "/images/user-1.jpg",
+    },
+    {
+      name: "Sneha Patel",
+      review:
+        "Affordable, transparent, and packed with advanced tools. ProStock is the best platform for hassle-free trading in India!",
+      image: "/images/user-1.jpg",
+    },
+    {
+      name: "Amit Verma",
+      review:
+        "Great educational resources and excellent customer support. ProStock makes stock trading accessible and enjoyable for everyone!",
+      image: "/images/user-1.jpg",
+    },
+  ];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <>
+      <section className="hero-section h-fit w-full pt-10 px-20 flex justify-center items-center gap-28">
+        <div className=" flex flex-col gap-6">
+          <h2 className="text-6xl font-bold font-Roboto  text-text_color">
+            Empowering every trade
+          </h2>
+          <h2 className="text-6xl font-bold font-Roboto  text-text_color">
+            for a rising India.
+          </h2>
+          <h2 className="text-5xl font-semibold font-Roboto  text-text_lite_color">
+            {" "}
+            Built for smart investors
+          </h2>
+
+          <button className="mt-6 h-12 w-44 font-bold uppercase text-white bg-theme_color rounded-md">
+            Download now
+          </button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+
+        <Image
+          className="mt-6 h-[38rem] w-fit"
+          src={"/mokups/hero-mokup-lite.png"}
+          alt=""
+          width={1000}
+          height={1000}
+        />
+      </section>
+      <div id="about" />
+      <section className="mt-20 h-fit flex flex-col gap-6 w-full px-44">
+        <h2 className="text-5xl font-bold font-Roboto  text-text_color">
+          What is ProStock?{" "}
+        </h2>
+
+        <p className="text-xl font-medium font-Roboto  text-text_lite_color">
+          ProStock is a powerful and intuitive trading app designed to empower
+          investors with seamless access to the stock market. Whether
+          you&apos;re a beginner or a seasoned trader, ProStock provides you
+          with a platform to buy and sell stocks at your convenience based on
+          your preferences and strategies. With ProStock, users gain full
+          control over their investments, enabling them to make informed
+          decisions in real-time. The platform offers a user-friendly interface,
+          ensuring that navigating the stock market is simple, efficient, and
+          hassle-free.
+        </p>
+        <div className="flex w-full justify-between items-center">
+          <div className="w-[50%] flex flex-col gap-4">
+            <h2 className="text-4xl font-bold font-Roboto  text-text_color">
+              What we offers
+            </h2>
+            <div className="flex flex-col gap-4">
+              <h2 className="text-[1.3rem] font-medium font-Roboto text-text_lite_color">
+                <span className="text-text_color font-semibold">
+                  Buy and Sell with Ease:
+                </span>{" "}
+                Execute trades effortlessly, whether you&apos;re investing for
+                the long term or trading for quick gains.
+              </h2>
+              <h2 className="text-[1.3rem] font-medium font-Roboto text-text_lite_color">
+                <span className="text-text_color font-semibold">
+                  Full Access:
+                </span>{" "}
+                Enjoy unrestricted access to market data and tools to make
+                buying and selling stocks as smooth as possible.
+              </h2>
+
+              <h2 className="text-[1.3rem] font-medium font-Roboto text-text_lite_color">
+                <span className="text-text_color font-semibold">
+                  Real-Time Updates:{" "}
+                </span>{" "}
+                Stay ahead of market trends with live stock prices and analysis
+                tools.
+              </h2>
+
+              <h2 className="text-[1.3rem] font-medium font-Roboto text-text_lite_color">
+                <span className="text-text_color font-semibold">
+                  Built for You:
+                </span>{" "}
+                Designed to meet the needs of every type of investor, from
+                beginners exploring the stock market to experts looking for
+                advanced features.
+              </h2>
+
+              <h2 className="text-[1.3rem] font-medium font-Roboto text-text_lite_color">
+                ProStock is not just a trading app—it’s your partner in
+                achieving financial goals. With a mission to simplify investing
+                and empower individuals, ProStock is redefining the way India
+                trades. Start your journey with ProStock today and take charge
+                of your investments like never before!
+              </h2>
+            </div>
+          </div>
+
           <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            className="mt-6 h-[40rem] w-fit"
+            src={"/mokups/lite-2-left.png"}
+            alt=""
+            width={1000}
+            height={1000}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        </div>
+      </section>
+      <div id="why-prostock" />
+      <section className="mt-20  h-screen flex flex-col gap-6 w-full px-44">
+        <h2 className="text-5xl font-bold font-Roboto  text-text_color">
+          Why Choose ProStock?{" "}
+        </h2>
+
+        <p className="text-xl font-medium font-Roboto  text-text_lite_color">
+          ProStock stands out as a comprehensive and innovative trading platform
+          designed to simplify your journey in the stock market. Whether you are
+          a beginner exploring investments or an experienced trader seeking
+          advanced tools, ProStock offers everything you need to trade
+          confidently and achieve your financial goals. Here’s why ProStock is
+          the right choice for you:
+        </p>
+
+        <WhyChooseProStock />
+      </section>
+      <div id="Testimonials" />
+      <section className="h-fit mt-14 mb-24 flex items-center justify-between gap-6 w-full px-44">
+        <div className="flex flex-col gap-4 ">
+          <h2 className="text-5xl font-bold font-Roboto  text-text_color">
+            What Our <br />
+            Customers Says
+          </h2>
+          <p className="text-lg w-[30rem] text-text_lite_color font-semibold">
+            Regation so in confined sma!test children unpacked delicate. Why sir
+            end betime uncivil respect Always get adieus nature day course for
+            common
+          </p>
+          <button className="mt-2 h-12 w-44 font-bold  text-white bg-theme_color rounded-md">
+            View more
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-6 w-[50%]">
+          {customerReviews?.map((item, index) => {
+            return (
+              <div
+                key={index}
+                className={`${
+                  index === 1 ? " border-l-theme_color" : "ml-20"
+                } px-4 py-4 flex gap-6 w-[30rem] items-center rounded-lg border-slate-400 border-[1px] border-l-8`}
+              >
+                <Image
+                  className="h-[4.6rem] rounded-full w-[4.6rem]"
+                  src={item.image}
+                  alt=""
+                  width={1000}
+                  height={1000}
+                />
+                <div>
+                  <h2 className="text-xl font-bold text-text_color">
+                    {item?.name}
+                  </h2>
+                  <p className="text-base font-semibold  text-text_lite_color leading-5 ">
+                    {item?.review}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+    </>
   );
 }
