@@ -32,7 +32,7 @@ function Navbar() {
 
       <div className="h-6 w-[2px] bg-text_color" />
 
-      <div className="flex gap-6">
+      <div className="flex gap-6 max-sm:hidden">
         {list?.map((item, index) => (
           <Link
             className="text-xl font-bold text-text_color"

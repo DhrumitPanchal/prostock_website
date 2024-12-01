@@ -64,8 +64,8 @@ function WhyChooseProStock() {
   const list2 = whyChooseProStock?.slice(5, 9);
 
   return (
-    <div className="mt-8 mg-10 w-full h-fit flex flex-wrap gap-10">
-      <div className="w-[48%] flex flex-col gap-4">
+    <div className="mt-8 mg-10 w-full h-fit flex flex-wrap gap-10 max-sm:gap-4">
+      <div className="w-[48%] max-sm:w-full flex flex-col gap-4">
         {list1.slice(0, 4).map((item, index) => {
           return (
             <div
@@ -104,7 +104,7 @@ function WhyChooseProStock() {
         })}
       </div>
 
-      <div className="w-[48%] flex flex-col gap-4">
+      <div className="w-[48%] max-sm:w-full flex flex-col gap-4">
         {list2.slice(0, 4).map((item, index) => {
           return (
             <div

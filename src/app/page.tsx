@@ -25,15 +25,15 @@ export default function Home() {
 
   return (
     <>
-      <section className="hero-section h-fit w-full pt-10 px-20 flex justify-center items-center gap-28">
-        <div className=" flex flex-col gap-6">
-          <h2 className="text-6xl font-bold font-Roboto  text-text_color">
+      <section className="hero-section h-fit w-full pt-10 px-20 max-sm:px-4 max-sm:pt-32 flex max-sm:flex-col justify-center items-center gap-28 max-sm:gap-10">
+        <div className=" flex flex-col gap-6 max-sm:gap-2 max-sm:items-center">
+          <h2 className="text-6xl max-sm:text-[2.6rem] font-bold font-Roboto  text-text_color">
             Empowering every trade
           </h2>
-          <h2 className="text-6xl font-bold font-Roboto  text-text_color">
+          <h2 className="text-6xl max-sm:text-[2.6rem] font-bold font-Roboto  text-text_color">
             for a rising India.
           </h2>
-          <h2 className="text-5xl font-semibold font-Roboto  text-text_lite_color">
+          <h2 className="text-5xl max-sm:text-[2.2rem] font-semibold font-Roboto  text-text_lite_color">
             {" "}
             Built for smart investors
           </h2>
@@ -44,7 +44,7 @@ export default function Home() {
         </div>
 
         <Image
-          className="mt-6 h-[38rem] w-fit"
+          className="mt-6 h-[38rem] max-sm:h-[34rem] w-fit"
           src={"/mokups/hero-mokup-lite.png"}
           alt=""
           width={1000}
@@ -52,7 +52,7 @@ export default function Home() {
         />
       </section>
       <div id="about" />
-      <section className="mt-20 h-fit flex flex-col gap-6 w-full px-44">
+      <section className="mt-20 h-fit flex flex-col gap-6 w-full px-44 max-sm:px-8">
         <h2 className="text-5xl font-bold font-Roboto  text-text_color">
           What is ProStock?{" "}
         </h2>
@@ -68,8 +68,8 @@ export default function Home() {
           ensuring that navigating the stock market is simple, efficient, and
           hassle-free.
         </p>
-        <div className="flex w-full justify-between items-center">
-          <div className="w-[50%] flex flex-col gap-4">
+        <div className="flex max-sm:flex-col w-full justify-between items-center">
+          <div className="w-[50%] max-sm:w-full flex flex-col gap-4">
             <h2 className="text-4xl font-bold font-Roboto  text-text_color">
               What we offers
             </h2>
@@ -126,7 +126,7 @@ export default function Home() {
         </div>
       </section>
       <div id="why-prostock" />
-      <section className="mt-20  h-screen flex flex-col gap-6 w-full px-44">
+      <section className="mt-20 h-screen max-sm:h-fit flex flex-col gap-6 w-full px-44 max-sm:px-8">
         <h2 className="text-5xl font-bold font-Roboto  text-text_color">
           Why Choose ProStock?{" "}
         </h2>
@@ -143,13 +143,13 @@ export default function Home() {
         <WhyChooseProStock />
       </section>
       <div id="Testimonials" />
-      <section className="h-fit mt-14 mb-24 flex items-center justify-between gap-6 w-full px-44">
-        <div className="flex flex-col gap-4 ">
+      <section className="h-fit mt-14 mb-24 flex max-sm:flex-col max-sm:px-8 items-center justify-between gap-6 w-full px-44">
+        <div className="flex flex-col w-full gap-4 ">
           <h2 className="text-5xl font-bold font-Roboto  text-text_color">
             What Our <br />
             Customers Says
           </h2>
-          <p className="text-lg w-[30rem] text-text_lite_color font-semibold">
+          <p className="text-lg w-[30rem] max-sm:w-full text-text_lite_color font-semibold">
             Regation so in confined sma!test children unpacked delicate. Why sir
             end betime uncivil respect Always get adieus nature day course for
             common
@@ -159,14 +159,14 @@ export default function Home() {
           </button>
         </div>
 
-        <div className="flex flex-col gap-6 w-[50%]">
+        <div className="flex flex-col gap-6 w-[50%] max-sm:w-full">
           {customerReviews?.map((item, index) => {
             return (
               <div
                 key={index}
                 className={`${
-                  index === 1 ? " border-l-theme_color" : "ml-20"
-                } px-4 py-4 flex gap-6 w-[30rem] items-center rounded-lg border-slate-400 border-[1px] border-l-8`}
+                  index === 1 ? " border-l-theme_color" : "ml-20 max-sm:ml-0"
+                } px-4 py-4 flex gap-6 w-[30rem] max-sm:w-full items-center rounded-lg border-slate-400 border-[1px] border-l-8`}
               >
                 <Image
                   className="h-[4.6rem] rounded-full w-[4.6rem]"
