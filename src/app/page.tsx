@@ -26,7 +26,12 @@ export default function Home() {
   return (
     <>
       <section className="hero-section h-fit w-full pt-10 px-20 max-sm:px-4 max-sm:pt-32 flex max-sm:flex-col justify-center items-center gap-28 max-sm:gap-10">
-        <div className=" flex flex-col gap-6 max-sm:gap-2 max-sm:items-center">
+        <div
+          data-aos="fade-up"
+          data-aos-delay="10"
+          data-aos-duration="300"
+          className=" flex flex-col gap-6 max-sm:gap-2 max-sm:items-center"
+        >
           <h2 className="text-6xl max-sm:text-[2.6rem] font-bold font-Roboto  text-text_color">
             Empowering every trade
           </h2>
@@ -38,12 +43,14 @@ export default function Home() {
             Built for smart investors
           </h2>
 
-          <button className="mt-6 h-12 w-44 font-bold uppercase text-white bg-theme_color rounded-md">
+          <button className="single-element mt-6 h-12 w-44 font-bold uppercase text-white bg-theme_color rounded-md">
             Download now
           </button>
         </div>
 
         <Image
+          data-aos="zoom-in-up"
+          data-aos-duration="600"
           className="mt-6 h-[38rem] max-sm:h-[34rem] w-fit"
           src={"/mokups/hero-mokup-lite.png"}
           alt=""
@@ -53,11 +60,21 @@ export default function Home() {
       </section>
       <div id="about" />
       <section className="mt-20 h-fit flex flex-col gap-6 w-full px-44 max-sm:px-8">
-        <h2 className="text-5xl font-bold font-Roboto  text-text_color">
+        <h2
+          data-aos="fade-up"
+          data-aos-delay="10"
+          data-aos-duration="300"
+          className="text-5xl font-bold font-Roboto  text-text_color"
+        >
           What is ProStock?{" "}
         </h2>
 
-        <p className="text-xl font-medium font-Roboto  text-text_lite_color">
+        <p
+          data-aos="fade-up"
+          data-aos-delay="10"
+          data-aos-duration="300"
+          className="text-xl font-medium font-Roboto  text-text_lite_color"
+        >
           ProStock is a powerful and intuitive trading app designed to empower
           investors with seamless access to the stock market. Whether
           you&apos;re a beginner or a seasoned trader, ProStock provides you
@@ -69,7 +86,12 @@ export default function Home() {
           hassle-free.
         </p>
         <div className="flex max-sm:flex-col w-full justify-between items-center">
-          <div className="w-[50%] max-sm:w-full flex flex-col gap-4">
+          <div
+            data-aos="fade-up"
+            data-aos-delay="10"
+            data-aos-duration="500"
+            className="w-[50%] max-sm:w-full flex flex-col gap-4"
+          >
             <h2 className="text-4xl font-bold font-Roboto  text-text_color">
               What we offers
             </h2>
@@ -117,6 +139,9 @@ export default function Home() {
           </div>
 
           <Image
+            data-aos="zoom-in-down"
+            data-aos-delay="200"
+            data-aos-duration="600"
             className="mt-6 h-[40rem] w-fit"
             src={"/mokups/lite-2-left.png"}
             alt=""
@@ -127,11 +152,21 @@ export default function Home() {
       </section>
       <div id="why-prostock" />
       <section className="mt-20 h-screen max-sm:h-fit flex flex-col gap-6 w-full px-44 max-sm:px-8">
-        <h2 className="text-5xl font-bold font-Roboto  text-text_color">
+        <h2
+          data-aos="fade-up"
+          data-aos-delay="10"
+          data-aos-duration="500"
+          className="text-5xl font-bold font-Roboto  text-text_color"
+        >
           Why Choose ProStock?{" "}
         </h2>
 
-        <p className="text-xl font-medium font-Roboto  text-text_lite_color">
+        <p
+          data-aos="fade-up"
+          data-aos-delay="10"
+          data-aos-duration="500"
+          className="text-xl font-medium font-Roboto  text-text_lite_color"
+        >
           ProStock stands out as a comprehensive and innovative trading platform
           designed to simplify your journey in the stock market. Whether you are
           a beginner exploring investments or an experienced trader seeking
@@ -144,7 +179,12 @@ export default function Home() {
       </section>
       <div id="Testimonials" />
       <section className="h-fit mt-14 mb-24 flex max-sm:flex-col max-sm:px-8 items-center justify-between gap-6 w-full px-44">
-        <div className="flex flex-col w-full gap-4 ">
+        <div
+          data-aos="fade-up"
+          data-aos-delay="10"
+          data-aos-duration="500"
+          className="flex flex-col w-full gap-4 "
+        >
           <h2 className="text-5xl font-bold font-Roboto  text-text_color">
             What Our <br />
             Customers Says
@@ -163,6 +203,9 @@ export default function Home() {
           {customerReviews?.map((item, index) => {
             return (
               <div
+                data-aos="zoom-in"
+                data-aos-delay="10"
+                data-aos-duration="500"
                 key={index}
                 className={`${
                   index === 1 ? " border-l-theme_color" : "ml-20 max-sm:ml-0"
