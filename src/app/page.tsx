@@ -1,6 +1,6 @@
 import Image from "next/image";
 import WhyChooseProStock from "./components/WyChooseProStock";
-
+import DownloadAPK from "./components/DownloadAPK";
 export default function Home() {
   const customerReviews = [
     {
@@ -43,9 +43,7 @@ export default function Home() {
             Built for smart investors
           </h2>
 
-          <button className="single-element mt-6 h-12 w-44 font-bold uppercase text-white bg-theme_color rounded-md">
-            Download now
-          </button>
+          <DownloadAPK />
         </div>
 
         <Image
