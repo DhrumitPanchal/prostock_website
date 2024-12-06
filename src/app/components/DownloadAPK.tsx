@@ -6,9 +6,12 @@ import axios from "axios";
 function DownloadAPK() {
   const handleDownload = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api", {
-        responseType: "blob", // Important to handle file downloads
-      });
+      const response = await axios.get(
+        "https://prostock-website.vercel.app/api",
+        {
+          responseType: "blob", // Important to handle file downloads
+        }
+      );
 
       // Create a blob from the response and trigger the download
       const url = window.URL.createObjectURL(new Blob([response.data]));
