@@ -1,4 +1,9 @@
+"use client";
+
+
 function DownloadAPK() {
+
+
   return (
     <>
       <a
