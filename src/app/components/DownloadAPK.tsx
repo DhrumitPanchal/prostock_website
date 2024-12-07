@@ -1,18 +1,25 @@
 "use client";
 
-
 function DownloadAPK() {
-
+  const handleDownload = () => {
+    const url =
+      "https://github.com/DhrumitPanchal/Prostocks-website/raw/main/public/prostock.apk";
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = "prostock.apk";
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
+  };
 
   return (
     <>
-      <a
-        href="/prostock.apk" // URL to the file in the public folder
-        download="prostock.apk" // Suggests the filename to the browser
+      <button
         className="single-element flex items-center justify-center mt-6 h-12 w-44 font-bold uppercase text-white bg-theme_color rounded-md"
+        onClick={handleDownload}
       >
         Download now
-      </a>
+      </button>
     </>
   );
 }
