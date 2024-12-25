@@ -29,6 +29,9 @@ function Navbar() {
     },
   ];
 
+  if (pathname.includes("/dashboard")) {
+    return;
+  }
   return (
     <>
       <div className="absolute top-0 left-0 w-full px-20 max-sm:px-6 py-4 max-sm:py-3 flex gap-10 items-center max-sm:justify-between">

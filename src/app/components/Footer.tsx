@@ -1,8 +1,12 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 function Footer() {
+  const pathname = usePathname();
+
   const socialLinks = [
     { icon: "/images/facebook.png", link: "#" },
     { icon: "/images/twitter.png", link: "#" },
@@ -11,6 +15,10 @@ function Footer() {
     { icon: "/images/youtube.png", link: "#" },
     { icon: "/images/telegram.png", link: "#" },
   ];
+
+  if (pathname.includes("/dashboard")) {
+    return;
+  }
 
   return (
     <>
