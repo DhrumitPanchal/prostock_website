@@ -26,28 +26,23 @@ const CreditCard = ({ Data }: { Data: DataProps }) => {
   const [rejectLoading, setRejectLoading] = useState<boolean>(false);
   const [status, setStatus] = useState(Data?.status);
   let { amount, createdAt, updatedAt, transactionId, utr } = Data;
-  let {
-    name,
-    bank_account_number,
-    bank_account_type,
-    bank_ifsc_number,
-    bank_name,
-  } = Data?.userId;
 
   const handelAccept = async () => {
     setAcceptLoading(true);
     try {
       const response = await axios.post(
-        "https://groww-server.vercel.app/payment/updatepwithdrawalsstatus",
+        "https://groww-server.vercel.app/payment/updatepaymentstatus",
         {
-          withdrawalId: Data._id,
+          paymentId: Data._id,
           status: "Approved",
+          userId: Data.userId,
+          amount,
         }
       );
 
       setStatus("Approved");
       setAcceptLoading(false);
-      toast.success("Withdrawal status updated successfully");
+      toast.success("status updated successfully");
     } catch (error: any) {
       console.log(error);
 
@@ -60,15 +55,17 @@ const CreditCard = ({ Data }: { Data: DataProps }) => {
     setRejectLoading(true);
     try {
       const response = await axios.post(
-        "https://groww-server.vercel.app/payment/updatepwithdrawalsstatus",
+        "https://groww-server.vercel.app/payment/updatepaymentstatus",
         {
-          withdrawalId: Data._id,
-          status: "Rejected",
+          paymentId: Data._id,
+          status: "Approved",
+          userId: Data.userId,
+          amount,
         }
       );
       setStatus("Rejected");
       setRejectLoading(false);
-      toast.success("Withdrawal status updated successfully");
+      toast.success("status updated successfully");
     } catch (error: any) {
       console.log(error);
       setRejectLoading(false);
