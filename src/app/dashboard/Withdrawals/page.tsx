@@ -29,10 +29,14 @@ const Page = () => {
       setData(filter);
 
       setLoading(false);
-    } catch (error: any) {
+    } catch (error) {
       setLoading(false);
       console.error(error);
-      toast.error(error.message || "An error occurred while fetching data.");
+      if (axios.isAxiosError(error)) {
+        toast.error(error.message || "An error occurred while fetching data.");
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
     }
   };
 

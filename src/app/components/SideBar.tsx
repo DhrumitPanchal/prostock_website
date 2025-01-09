@@ -7,7 +7,6 @@ import { IoBagOutline } from "react-icons/io5";
 import { BsStars } from "react-icons/bs";
 import { IoStatsChartSharp } from "react-icons/io5";
 import { IoPersonOutline } from "react-icons/io5";
-import { IoTicketOutline } from "react-icons/io5";
 import { usePathname } from "next/navigation";
 import { RxCross2 } from "react-icons/rx";
 import { HiMiniBars3 } from "react-icons/hi2";
