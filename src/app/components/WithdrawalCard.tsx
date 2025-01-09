@@ -13,6 +13,7 @@ interface User {
 }
 
 interface DataProps {
+  _id: string;
   status: string;
   amount: number;
   createdAt: string;
