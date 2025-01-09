@@ -1,4 +1,4 @@
-export function formatTimestamp(timestamp: string) {
+export function formatTimestamp(timestamp) {
   const date = new Date(timestamp);
   const today = new Date();
 
