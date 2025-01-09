@@ -3,7 +3,7 @@
 function DownloadAPK() {
   const handleDownload = () => {
     const url =
-      "https://github.com/DhrumitPanchal/Prostocks-website/raw/main/public/ProStock.apk";
+      "https://drive.google.com/file/d/1Jw5pecACw6LWKCNYQeGhKJkmlAse1kBY/view?usp=drive_link";
     const anchor = document.createElement("a");
     anchor.href = url;
     anchor.download = "ProStock.apk";
