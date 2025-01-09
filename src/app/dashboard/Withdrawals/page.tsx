@@ -4,9 +4,21 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
 
+interface User {
+  name: string;
+  bank_account_number: string;
+  bank_account_type: string;
+  bank_ifsc_number: string;
+  bank_name: string;
+}
+
 interface Withdrawal {
+  _id: string;
+  amount: number;
+  createdAt: string;
+  updatedAt: string;
+  userId: User; // Change userId to User type
   status: string;
-  // Add other properties of the withdrawal object here
 }
 
 const Page = () => {
