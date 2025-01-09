@@ -16,7 +16,7 @@ function Footer() {
     { icon: "/images/telegram.png", link: "#" },
   ];
 
-  if (pathname.includes("/dashboard")) {
+  if (pathname.includes("/dashboard") || pathname.includes("/tradingview")) {
     return;
   }
 
