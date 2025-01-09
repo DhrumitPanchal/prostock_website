@@ -3,10 +3,10 @@
 function DownloadAPK() {
   const handleDownload = () => {
     const url =
-      "https://github.com/DhrumitPanchal/Prostocks-website/raw/main/public/prostock.apk";
+      "https://github.com/DhrumitPanchal/Prostocks-website/raw/main/public/ProStock.apk";
     const anchor = document.createElement("a");
     anchor.href = url;
-    anchor.download = "prostock.apk";
+    anchor.download = "ProStock.apk";
     document.body.appendChild(anchor);
     anchor.click();
     document.body.removeChild(anchor);
