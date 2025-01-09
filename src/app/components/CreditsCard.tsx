@@ -13,12 +13,14 @@ interface User {
 }
 
 interface DataProps {
+  _id : string;
   status: string;
   amount: number;
   createdAt: string;
   updatedAt: string;
   transactionId: string;
   userId: User;
+  utr: string | number
 }
 
 const CreditCard = ({ Data }: { Data: DataProps }) => {
