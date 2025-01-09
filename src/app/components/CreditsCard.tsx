@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { formatTimestamp } from "../utils/DateAndTime";
 import axios from "axios";
 import { toast } from "sonner";
-import { useSearchParams } from "next/navigation";
 
 interface User {
   name: string;
@@ -13,26 +12,26 @@ interface User {
 }
 
 interface DataProps {
-  _id : string;
+  _id: string;
   status: string;
   amount: number;
   createdAt: string;
   updatedAt: string;
   transactionId: string;
   userId: User;
-  utr: string | number
+  utr: string | number;
 }
 
 const CreditCard = ({ Data }: { Data: DataProps }) => {
   const [acceptLoading, setAcceptLoading] = useState<boolean>(false);
   const [rejectLoading, setRejectLoading] = useState<boolean>(false);
   const [status, setStatus] = useState(Data?.status);
-  let { amount, createdAt, updatedAt, transactionId, utr } = Data;
+  const { amount, createdAt, transactionId, utr } = Data;
 
   const handelAccept = async () => {
     setAcceptLoading(true);
     try {
-      const response = await axios.post(
+      await axios.post(
         "https://groww-server.vercel.app/payment/updatepaymentstatus",
         {
           paymentId: Data._id,
@@ -45,18 +44,22 @@ const CreditCard = ({ Data }: { Data: DataProps }) => {
       setStatus("Approved");
       setAcceptLoading(false);
       toast.success("status updated successfully");
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
 
       setAcceptLoading(false);
-      toast.error(error.message);
+      if (axios.isAxiosError(error)) {
+        toast.error(error.message);
+      } else {
+        toast.error("An unexpected error occurred");
+      }
     }
   };
 
   const handelReject = async () => {
     setRejectLoading(true);
     try {
-      const response = await axios.post(
+      await axios.post(
         "https://groww-server.vercel.app/payment/updatepaymentstatus",
         {
           paymentId: Data._id,
@@ -68,10 +71,14 @@ const CreditCard = ({ Data }: { Data: DataProps }) => {
       setStatus("Rejected");
       setRejectLoading(false);
       toast.success("status updated successfully");
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
       setRejectLoading(false);
-      toast.error(error.message);
+      if (axios.isAxiosError(error)) {
+        toast.error(error.message);
+      } else {
+        toast.error("An unexpected error occurred");
+      }
     }
   };
   return (
