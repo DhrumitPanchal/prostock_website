@@ -3,28 +3,10 @@ import { formatTimestamp } from "../utils/DateAndTime";
 import axios from "axios";
 import { toast } from "sonner";
 
-interface User {
-  name: string;
-  bank_account_number: string;
-  bank_account_type: string;
-  bank_ifsc_number: string;
-  bank_name: string;
-}
 
-interface DataProps {
-  _id: string;
-  status: string;
-  amount: number;
-  createdAt: string;
-  updatedAt: string;
-  transactionId: string;
-  userId: User;
-  utr: string | number;
-}
-
-const CreditCard = ({ Data }: { Data: DataProps }) => {
-  const [acceptLoading, setAcceptLoading] = useState<boolean>(false);
-  const [rejectLoading, setRejectLoading] = useState<boolean>(false);
+const CreditCard = ({ Data }) => {
+  const [acceptLoading, setAcceptLoading] = useState(false);
+  const [rejectLoading, setRejectLoading] = useState(false);
   const [status, setStatus] = useState(Data?.status);
   const { amount, createdAt, transactionId, utr } = Data;
 
