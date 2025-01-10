@@ -69,9 +69,7 @@ function WhyChooseProStock() {
         {list1.slice(0, 4).map((item, index) => {
           return (
             <div
-              data-aos="fade-up"
-              data-aos-delay="10"
-              data-aos-duration="500"
+              
               onClick={() =>
                 setOpenIndex(
                   openIndex?.index === index && openIndex?.list === "first"
@@ -111,9 +109,7 @@ function WhyChooseProStock() {
         {list2.slice(0, 4).map((item, index) => {
           return (
             <div
-              data-aos="fade-up"
-              data-aos-delay="10"
-              data-aos-duration="500"
+              
               onClick={() =>
                 setOpenIndex(
                   openIndex?.index === index && openIndex?.list === "second"
