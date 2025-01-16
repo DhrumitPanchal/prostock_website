@@ -7,7 +7,7 @@ import calculatePriceChange from "../utils/calculatePriceChnage";
 import Colors from "../colors";
 import { useSearchParams } from "next/navigation";
 
-const SOCKET_URL = "https://upstock-api.onrender.com/streaming_user_specific"; // Your WebSocket URL
+const SOCKET_URL = "https://upstock-api.onrender.com/streaming_user_specifi"; // Your WebSocket URL
 const HISTORICAL_CANDLE_API = "https://api.upstox.com/v2/historical-candle"; // Upstox Historical Candle API
 const INTRADAY_API = "https://api.upstox.com/v2/historical-candle/intraday"; // Upstox Intraday API
 
@@ -19,6 +19,9 @@ function Page() {
   const theme = searchParams.get("theme") === "dark" ? "dark" : "light";
   const Name = searchParams.get("name") || null;
   const key = searchParams.get("key") || null;
+  const ParamCurrentPrice = searchParams.get("currentprice") || null;
+  const ParamPriceChange = searchParams.get("pricechaneg") || null;
+  const ParamPercentageChange = searchParams.get("percentagechange") || null;
 
   const [stockData, setStockData] = useState(null);
   const [stockCurrentPrice, setStockCurrentPrice] = useState(null);
@@ -78,7 +81,6 @@ function Page() {
     const minutes = String(dateObject.getMinutes()).padStart(2, "0");
 
     // Return the formatted string
-    console.log(`${year}-${month}-${day} ${hours}:${minutes}`);
 
     return `${year}-${month}-${day} ${hours}:${minutes}`;
   }
@@ -149,7 +151,6 @@ function Page() {
         const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are 0-indexed
         const year = date.getFullYear();
 
-        console.log(`${hours}:${minutes}`);
         // If the tick mark type indicates a day boundary (e.g., when the day changes)
         if (`${hours}:${minutes}` === "09:15") {
           // Return the date in "DD/MM/YYYY" format
@@ -163,12 +164,22 @@ function Page() {
     chart.timeScale().fitContent();
 
     const getHistoricalData = async () => {
+      const today = new Date();
+      const twoWeeksAgo = new Date(today);
+
+      // Subtract 14 days to get the date two weeks ago
+      twoWeeksAgo.setDate(today.getDate() - 14);
+
+      // Format dates as YYYY-MM-DD
+      const todayFormatted = today.toISOString().split("T")[0];
+      const twoWeeksAgoFormatted = twoWeeksAgo.toISOString().split("T")[0];
+      console.log("week date : " + twoWeeksAgoFormatted);
       try {
         const response1 = await axios.get(
           `${HISTORICAL_CANDLE_API}/${encodeURIComponent(
             key
-          )}/1minute/2025-01-16
-          /2024-12-30`
+          )}/1minute/${todayFormatted}
+          /${twoWeeksAgoFormatted}`
         );
 
         const response2 = await axios.get(
@@ -281,24 +292,29 @@ function Page() {
                 fontSize: "14px",
               }}
             >
-              ₹ {stockCurrentPrice?.currentPrice || 0.0}
+              ₹ {stockCurrentPrice?.currentPrice || ParamCurrentPrice || 0.0}
             </h2>
             <h2
               style={{
-                color: calculatePriceChange(
-                  stockCurrentPrice?.Pre_close_price,
-                  stockCurrentPrice?.currentPrice
-                ).isPositive
-                  ? Colors?.profit
-                  : Colors?.errorColor,
+                color: stockCurrentPrice
+                  ? calculatePriceChange(
+                      stockCurrentPrice?.Pre_close_price,
+                      stockCurrentPrice?.currentPrice
+                    ).isPositive
+                    ? Colors?.profit
+                    : Colors?.errorColor
+                  : ParamPriceChange < 0
+                  ? Colors.errorColor
+                  : Colors.profit,
                 fontWeight: 500,
                 fontSize: "14px",
               }}
             >
-              {stockCurrentPrice &&
-                `${stockCurrentPrice?.priceChange.toFixed(2) || 0.0} (${
-                  Math.abs(stockCurrentPrice?.percentageChange) || 0.0
-                }%)`}
+              {stockCurrentPrice
+                ? `${stockCurrentPrice?.priceChange.toFixed(2) || 0.0} (${
+                    Math.abs(stockCurrentPrice?.percentageChange) || 0.0
+                  }%)`
+                : `${ParamPriceChange} (${ParamPercentageChange}%)`}
             </h2>
           </div>
         </div>
