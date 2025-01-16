@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { Suspense, useEffect, useRef, useState } from "react";
 import { createChart, ColorType } from "lightweight-charts";
 import axios from "axios";
 import io from "socket.io-client";
@@ -261,54 +261,56 @@ function Page() {
   }, [key]);
 
   return (
-    <div>
-      {stockData && stockData.length > 0 && (
-        <div className="absolute top-6 left-6  z-50">
-          <h2
-            style={{
-              color: theme === "dark" ? Colors.dark_text : Colors.light_text,
-              fontWeight: 400,
-              fontSize: "20px",
-            }}
-          >
-            {Name}
-          </h2>
-          <div className="flex gap-3">
+    <Suspense>
+      <div>
+        {stockData && stockData.length > 0 && (
+          <div className="absolute top-6 left-6  z-50">
             <h2
               style={{
-                color: theme === "dark" ? "white" : "black",
-                fontWeight: 500,
-                fontSize: "14px",
+                color: theme === "dark" ? Colors.dark_text : Colors.light_text,
+                fontWeight: 400,
+                fontSize: "20px",
               }}
             >
-              ₹ {stockCurrentPrice?.currentPrice || 0.0}
+              {Name}
             </h2>
-            <h2
-              style={{
-                color: calculatePriceChange(
-                  stockCurrentPrice?.Pre_close_price,
-                  stockCurrentPrice?.currentPrice
-                ).isPositive
-                  ? Colors?.profit
-                  : Colors?.errorColor,
-                fontWeight: 500,
-                fontSize: "14px",
-              }}
-            >
-              {stockCurrentPrice &&
-                `${stockCurrentPrice?.priceChange.toFixed(2) || 0.0} (${
-                  Math.abs(stockCurrentPrice?.percentageChange) || 0.0
-                }%)`}
-            </h2>
+            <div className="flex gap-3">
+              <h2
+                style={{
+                  color: theme === "dark" ? "white" : "black",
+                  fontWeight: 500,
+                  fontSize: "14px",
+                }}
+              >
+                ₹ {stockCurrentPrice?.currentPrice || 0.0}
+              </h2>
+              <h2
+                style={{
+                  color: calculatePriceChange(
+                    stockCurrentPrice?.Pre_close_price,
+                    stockCurrentPrice?.currentPrice
+                  ).isPositive
+                    ? Colors?.profit
+                    : Colors?.errorColor,
+                  fontWeight: 500,
+                  fontSize: "14px",
+                }}
+              >
+                {stockCurrentPrice &&
+                  `${stockCurrentPrice?.priceChange.toFixed(2) || 0.0} (${
+                    Math.abs(stockCurrentPrice?.percentageChange) || 0.0
+                  }%)`}
+              </h2>
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <div
-        ref={chartContainerRef}
-        style={{ position: "relative", height: "400px" }}
-      />
-    </div>
+        <div
+          ref={chartContainerRef}
+          style={{ position: "relative", height: "400px" }}
+        />
+      </div>
+    </Suspense>
   );
 }
 
