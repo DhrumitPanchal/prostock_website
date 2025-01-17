@@ -7,7 +7,7 @@ import calculatePriceChange from "../utils/calculatePriceChnage";
 import Colors from "../colors";
 import { useSearchParams } from "next/navigation";
 
-const SOCKET_URL = "https://upstock-api.onrender.com/streaming_user_specifi"; // Your WebSocket URL
+const SOCKET_URL = "https://upstock-api.onrender.com/streaming_user_specific"; // Your WebSocket URL
 const HISTORICAL_CANDLE_API = "https://api.upstox.com/v2/historical-candle"; // Upstox Historical Candle API
 const INTRADAY_API = "https://api.upstox.com/v2/historical-candle/intraday"; // Upstox Intraday API
 
@@ -28,7 +28,7 @@ function Page() {
   const [stockSocketData, setStockSocketData] = useState(null);
 
   function handleSocketData(newCandleData) {
-    const timestamp = parseInt(newCandleData.time, 10); // Time in seconds
+    const timestamp = Math.floor(newCandleData.time / 60) * 60; // Round down to the nearest minute
     const updatedCandle = {
       time: timestamp,
       open: newCandleData.open,
@@ -43,21 +43,22 @@ function Page() {
       const updatedData = [...prevData];
       const lastCandle = updatedData[updatedData.length - 1];
 
-      // If the new data belongs to the same minute, update it
-      if (lastCandle && lastCandle.time === updatedCandle.time) {
+      if (lastCandle && lastCandle.time === timestamp) {
+        // Update the last candle
         updatedData[updatedData.length - 1] = {
           ...lastCandle,
+          open: updatedCandle.open,
           high: Math.max(lastCandle.high, updatedCandle.high),
           low: Math.min(lastCandle.low, updatedCandle.low),
           close: updatedCandle.close,
         };
       } else {
-        // Otherwise, add the new candle
+        // Add new candle
         updatedData.push(updatedCandle);
       }
 
-      // Update the chart data
-      // candleSeriesRef.current?.setData(updatedData);
+      // Update the chart
+      candleSeriesRef.current?.setData(updatedData);
       return updatedData;
     });
   }
@@ -173,7 +174,6 @@ function Page() {
       // Format dates as YYYY-MM-DD
       const todayFormatted = today.toISOString().split("T")[0];
       const twoWeeksAgoFormatted = twoWeeksAgo.toISOString().split("T")[0];
-      console.log("week date : " + twoWeeksAgoFormatted);
       try {
         const response1 = await axios.get(
           `${HISTORICAL_CANDLE_API}/${encodeURIComponent(
@@ -251,16 +251,28 @@ function Page() {
 
         const newCandleData = {
           time: Math.floor(data?.currentTs / 1000),
-          open: data?.feeds[key]?.ff?.marketFF?.ltpc?.ltp,
-          high: data?.feeds[key]?.ff?.marketFF?.marketOHLC?.ohlc[1]?.high,
-          low: data?.feeds[key]?.ff?.marketFF?.marketOHLC?.ohlc[1]?.low,
-          close: data?.feeds[key]?.ff?.marketFF?.ltpc?.cp,
+          open: data?.feeds[key]?.ff?.marketFF?.marketOHLC?.ohlc[2]?.open,
+          high: data?.feeds[key]?.ff?.marketFF?.marketOHLC?.ohlc[2]?.high,
+          low: data?.feeds[key]?.ff?.marketFF?.marketOHLC?.ohlc[2]?.low,
+          close: data?.feeds[key]?.ff?.marketFF?.marketOHLC?.ohlc[2]?.close,
         };
 
         // Update the chart using the candleSeries stored in ref
 
-        // setStockSocketData(newCandleData);
+        const date = new Date(newCandleData?.time * 1000);
 
+        // Extract the hours, minutes, and seconds
+        const hours = date.getHours().toString().padStart(2, "0");
+        const minutes = date.getMinutes().toString().padStart(2, "0");
+        const seconds = date.getSeconds().toString().padStart(2, "0");
+
+        // Combine into the desired format
+        const timeString = `${hours}:${minutes}:${seconds}`;
+        // setStockSocketData(newCandleData);
+        // console.log({
+        //   time: timeString,
+        //   data: data?.feeds[key]?.ff?.marketFF,
+        // });
         handleSocketData(newCandleData);
       }
     });
@@ -292,7 +304,10 @@ function Page() {
                 fontSize: "14px",
               }}
             >
-              ₹ {stockCurrentPrice?.currentPrice || ParamCurrentPrice || 0.0}
+              ₹{" "}
+              {stockCurrentPrice?.currentPrice.toFixed(2) ||
+                ParamCurrentPrice ||
+                0.0}
             </h2>
             <h2
               style={{
