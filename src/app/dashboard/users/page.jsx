@@ -24,7 +24,7 @@ function Page() {
 
     try {
       const res = await axios.get(
-        "https://groww-server.vercel.app/admin//getallusers",
+        "https://groww-server.vercel.app/admin/getallusers",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
