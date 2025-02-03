@@ -34,6 +34,6 @@
     "src/app/utils/DateAndTime.js",
     "src/app/utils/calculatePriceChnage.js",
     "src/app/tradingview/page.jsx"
-, "src/app/dashboard/users/[ID]/page.jsx", "src/app/dashboard/users/page.jsx"  ],
+, "src/app/dashboard/users/[ID]/page.jsx", "src/app/dashboard/users/page.jsx", "src/app/dashboard/credits/page.jsx"  ],
   "exclude": ["node_modules"]
 }
