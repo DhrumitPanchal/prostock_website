@@ -1,9 +1,9 @@
 "use client";
+import Loading from "@/app/components/Loading";
 import WithdrawalCard from "@/app/components/WithdrawalCard";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
-
 
 const Page = () => {
   const [data, setData] = useState([]); // Original fetched data
@@ -44,29 +44,25 @@ const Page = () => {
   }, []);
 
   return (
-    <section className="w-5/6 max-sm:w-full max-sm:left-0 absolute right-0 px-8 py-4 max-sm:px-4 text-slate-800">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold font-sans">Withdrawals Requests</h2>
-
-        {/* <div className="bg-gray-100 py-1 px-2 rounded-md">
-          <select
-            onChange={(e) => setSelectedStatus(e.target.value)}
-            className="bg-transparent w-40 capitalize"
-          >
-            {statusOptions.map((item, index) => (
-              <option key={index} className="px-4 capitalize" value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </div> */}
-      </div>
+    <>
       {loading ? (
-        <p>Loading...</p>
+        <div className="flex justify-center h-screen items-center w-5/6 max-sm:w-full max-sm:left-0 absolute right-0 px-8 py-4 max-sm:px-4 text-slate-800">
+          <Loading size={"large"} />
+        </div>
       ) : (
-        data.map((item, index) => <WithdrawalCard key={index} Data={item} />)
+        <section className="w-5/6 max-sm:w-full max-sm:left-0 absolute right-0 px-8 py-4 max-sm:px-4 text-slate-800">
+          <div className="flex justify-between items-center">
+            <h2 className="text-2xl font-bold font-sans">
+              Withdrawals Requests
+            </h2>
+          </div>
+
+          {data.map((item, index) => (
+            <WithdrawalCard key={index} Data={item} />
+          ))}
+        </section>
       )}
-    </section>
+    </>
   );
 };
 

@@ -28,14 +28,14 @@ const Sidebar = () => {
     },
     {
       name: "customers",
-      path: "/dashboard/customers",
+      path: "/dashboard/users",
       icon: <IoPersonOutline />,
     },
-    {
-      name: "analytics",
-      path: "/dashboard/analytics",
-      icon: <IoStatsChartSharp />,
-    },
+    // {
+    //   name: "analytics",
+    //   path: "/dashboard/analytics",
+    //   icon: <IoStatsChartSharp />,
+    // },
   ];
   return (
     <>

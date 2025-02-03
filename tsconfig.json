@@ -22,6 +22,18 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/dashboard/Withdrawals/page.jsx", "src/app/dashboard/page.jsx", "src/app/dashboard/credits/page.jsx", "src/app/components/CreditsCard.jsx", "src/app/utils/DateAndTime.js", "src/app/utils/calculatePriceChnage.js", "src/app/tradingview/page.jsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/dashboard/Withdrawals/page.jsx",
+    "src/app/dashboard/home/page.jsx",
+    "src/app/dashboard/home/page.jsx",
+    "src/app/components/CreditsCard.jsx",
+    "src/app/utils/DateAndTime.js",
+    "src/app/utils/calculatePriceChnage.js",
+    "src/app/tradingview/page.jsx"
+, "src/app/dashboard/users/[ID]/page.jsx", "src/app/dashboard/users/page.jsx"  ],
   "exclude": ["node_modules"]
 }

@@ -28,7 +28,6 @@ export default function RootLayout({
         <meta name="revisit-after" content="30 days" />
         <link rel="icon" sizes="any" href="/favicon.png" />
         <link rel="apple-touch-icon" sizes="any" href="/favicon.png" />
-        <link rel="manifest" href="./manifest.json" />
       </head>
       <body>
         <Toaster />
