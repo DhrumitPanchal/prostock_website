@@ -18,9 +18,12 @@ function Page() {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:8000/auth/login", {
-        ...data,
-      });
+      const response = await axios.post(
+        "https://groww-server.vercel.app/auth/login",
+        {
+          ...data,
+        }
+      );
       console.log(response?.data);
       setLoading(false);
 
