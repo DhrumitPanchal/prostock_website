@@ -1,6 +1,10 @@
 import React from "react";
 
-function Loading({ size }) {
+interface LoadingProps {
+  size: 'small' | 'large';
+}
+
+function Loading({ size }: LoadingProps) {
   return (
     <svg
       aria-hidden="true"
