@@ -16,7 +16,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   const [authenticated, setAuthenticated] = useState(false);
 
   const checkUser = async () => {
-    console.log("check user ");
     try {
       const token = await Cookies.get("access_token");
       if (!token) {
@@ -29,8 +28,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-
-      console.log(res?.data);
 
       setAuthenticated(true);
       setLoading(false);

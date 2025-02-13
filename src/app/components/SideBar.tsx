@@ -31,11 +31,11 @@ const Sidebar = () => {
       path: "/dashboard/users",
       icon: <IoPersonOutline />,
     },
-    // {
-    //   name: "analytics",
-    //   path: "/dashboard/analytics",
-    //   icon: <IoStatsChartSharp />,
-    // },
+    {
+      name: "Payment ID",
+      path: "/dashboard/paymentID",
+      icon: <IoStatsChartSharp />,
+    },
   ];
   return (
     <>

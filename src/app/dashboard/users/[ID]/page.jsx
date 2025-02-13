@@ -10,6 +10,9 @@ import {
   IoArrowForward,
   IoArrowBackOutline,
 } from "react-icons/io5";
+import Loading from "@/app/components/Loading";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 function Page({ params }) {
   const [user, setUser] = useState({
@@ -25,6 +28,9 @@ function Page({ params }) {
   const [holdings, setHoldings] = useState([]);
   const [history, setHistory] = useState([]);
   const [Invested, setInvested] = useState(0);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+  const router = useRouter();
+
   function formatTimestamp(timestamp) {
     const date = new Date(timestamp);
     const options = { year: "numeric", month: "short", day: "numeric" };
@@ -79,12 +85,51 @@ function Page({ params }) {
       console.log(error);
     }
   };
+
+  const deleteUser = async () => {
+    const ID = await params?.ID;
+    const token = await Cookies.get("access_token");
+    const check = confirm("Are you sure you want to delete this user?");
+    if (check) {
+      setDeleteLoading(true);
+      try {
+        const res = await axios.delete(
+          `https://groww-server.vercel.app/auth/user/${ID}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        console.log(res);
+        setDeleteLoading(false);
+        toast.success("User Deleted Successfully");
+        router.push("/dashboard/users");
+      } catch (error) {
+        console.log(error);
+        setDeleteLoading(false);
+        toast.error(error?.response?.data?.msg);
+      }
+    }
+  };
   useEffect(() => {
     fetchUsers();
   }, []);
   return (
     <section className="w-5/6 h-screen max-sm:w-full max-sm:left-0 absolute right-0 px-8 py-4 max-sm:px-4 text-slate-800">
-      <h2 className="text-2xl font-bold font-sans">User Details</h2>
+      <div className="flex  justify-between items-center">
+        <h2 className="text-2xl font-bold font-sans">User Details</h2>
+        {deleteLoading ? (
+          <div className="w-24 h-8 flex justify-center items-center rounded-md bg-red-300 text-white">
+            <Loading size="small" />
+          </div>
+        ) : (
+          <button
+            onClick={() => deleteUser()}
+            className="w-24 h-8 rounded-md bg-red-500 text-white"
+          >
+            Delete
+          </button>
+        )}
+      </div>
 
       <div className="mt-6 flex flex-col gap-4">
         <div className="flex gap-4  items-center w-full  rounded-md px-4 py-3 bg-slate-500/10 ">
