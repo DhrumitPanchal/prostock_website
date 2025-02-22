@@ -281,7 +281,7 @@ function Page({ params }) {
                           <div className="flex justify-between">
                             <h2 className="font-semibold">jio finance</h2>
                             <div className="w-1/4 justify-between flex">
-                              <h2>3</h2>
+                              <h2>{item?.quantity}</h2>
                               <h2 className="w-2/4 text-end font-semibold">
                                 {item?.buyPrice.toFixed(2)}
                               </h2>
