@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { AOSInit } from "../app/Aos";
 import { Toaster } from "sonner";
+import Script from "next/script";
 export const metadata = {
   title: "Prostock",
   description:
@@ -51,6 +52,20 @@ src="https://www.facebook.com/tr?id=994328532425019&ev=PageView&noscript=1"
 />`,
           }}
         ></noscript>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17015640829"
+          strategy="afterInteractive"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17015640829');
+`,
+          }}
+        ></script>
       </head>
       <body>
         <Toaster />
